@@ -1,0 +1,15 @@
+You can run the binary and source codes are here for you to browse, but to compile, you need some setups on your pc.
+install vcpkg and python 3
+https://github.com/Microsoft/vcpkg#quick-start-windows
+run vcpkg integrate install, after installation, so you can use the libraries it installed directly in visual studio, rather than doing other further setups.
+install libraries using vcpkg (which is a package manager maintained by microsoft for getting libries and setting up for you for c++ projects. So you don't have to go through the hassles and setting it up yourself).
+https://github.com/microsoft/cpprestsdk/wiki/Getting-Started-Tutorial
+
+vcpkg installs (using) :
+vcpkg install boost-asio boost-asio:x64-windows
+vcpkg install cpprestsdk cpprestsdk:x64-windows
+vcpkg install cppcoro cppcoro:x64-windows
+vcpkg more installs :
+vcpkg install picosha2 picosha2:x64-windows
+vcpkg install sqlitecpp sqlitecpp:x64-windows
+vcpkg install gcem gcem:x64-windows

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Manga_related">
+      <UniqueIdentifier>{d0c7b055-6d1c-49d5-8f9e-37818c16f7fc}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Manga_related\Dynasty_manga.h">
+      <Filter>Manga_related</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Manga_related\Manga_related_Omiko.h">
+      <Filter>Manga_related</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Omiko.h" />
+  </ItemGroup>
+</Project>

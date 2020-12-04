@@ -1,0 +1,113 @@
+*Some common Intrinics ->
+__m128 sum = _mm_add_ps( *p1, *p2 ) //SIMD add four number and sum
+https://stackoverflow.blog/2020/07/08/improving-performance-with-simd-intrinsics-in-three-use-cases/
+
+*<stdint>->
+It also includes something like the fastest integer for that platfor :uint_fastN_t, where N is the minimum bits required
+http://www.devx.com/tips/Tip/14096
+
+*Register size->
+On 64 bit system, it's 256 bit, generally speaking. On 32 bit system, it's 128.
+
+*Loop unwinding->
+Increasing code size for more performance by using more register :https://zh.wikipedia.org/wiki/%E5%BE%AA%E7%8E%AF%E5%B1%95%E5%BC%80
+https://stackoverflow.com/questions/190681/when-is-loop-unwinding-effective :There are several cases where I do unroll performance critical loops by hand, but I only do this if I know that the compiler will - after manual unrolling - be able to use architectural specific feature such as SSE or MMX instructions. Then, and only then I do it.
+Btw - modern CPUs are very efficient at executing well predictable branches. This is exactly what a loop is. The loop overhead is so small these days that it rarely makes a difference. Memory latency effects that may occur due to the increase in code-size will however make a difference.
+
+*Unresolved external whenever you put a static member in struct.h->
+If you are using C++ 17 you can just use the inline specifier (see https://stackoverflow.com/a/11711082/55721
+If using older versions of the C++ standard, you must add the definitions to match your declarations of X and Y
+https://stackoverflow.com/questions/195207/unresolved-external-symbol-on-static-class-members
+
+*STD::ANY->
+in c++ you often need predefined types for things to work, and yea I still wanna use ANY, because it's annoying sometimes to have types defined if you are in rapid development and if you are knowing what the consumer is needing the types from top_domain and you can make sure that you are providing it then for components in the middle you can just use ANY and resolve later
+
+*warning C4715: 'Models::Common02::Dynasty_manga_::Dev_env::inx001': not all control paths return a value->
+Surprisingly, this error came from not including the namespace name
+
+Severity	Code	Description	Project	File	Line	Suppression State
+Error	C4996	'std::codecvt_utf8<wchar_t,1114111,(std::codecvt_mode)0>': warning STL4017: std::wbuffer_convert, std::wstring_convert, and the <codecvt> header (containing std::codecvt_mode, std::codecvt_utf8, std::codecvt_utf16, and std::codecvt_utf8_utf16) are deprecated in C++17. (The std::codecvt class template is NOT deprecated.) The C++ Standard doesn't provide equivalent non-deprecated functionality; consider using MultiByteToWideChar() and WideCharToMultiByte() from <Windows.h> instead. You can define _SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you have received this warning.	Managed_cpp	C:\Users\zoemy\Documents\C++\Experimental_new\Managed_cpp_Cosmos\Managed_cpp_Common01\functions_01.h	11	
+
+#define _WIN32_WINNT 0x0A00 //As required by some library, they wanna know which platform you are on, selected for windows 10
+https://docs.microsoft.com/en-us/cpp/porting/modifying-winver-and-win32-winnt?view=msvc-160
+
+
+
+[practice] :Usually the source that has the most potential to be stand alone and not depending on other gets to be on top.
+
+*std::vector->
+push_back() constructs a temporary object using its constructor, while emplace_back would just attempt to build a strcut at target location with whatever constructor available for the input of param given.
+https://stackoverflow.com/questions/10890653/why-would-i-ever-use-push-back-instead-of-emplace-back
+If you intend to call explicit constructors, then you need the power of emplace_back. If you want to call only implicit constructors, stick with the safety of push_back.
+std::vector<std::unique_ptr<T>> v;
+T a;
+v.emplace_back(std::addressof(a)); // compiles
+v.push_back(std::addressof(a)); // fails to compile
+
+*for std::tuple to be used for function argument while having default values ->
+for now use std::maketuple, it seems the example is initializing all the members, what if I just want one? Although, although. it shall has all the values when passed in as augment right.
+https://stackoverflow.com/questions/36535039/tuple-as-default-value-in-function-parameter
+
+*After commenting out and ctrl + alt + F7 to recompile again, run time error was gone, even after bringing the commented lines back ->
+std::wcerr << "Eh :url_str :" << url_str << std::endl;//if string literal doesn't have L macro (for wstring) you get run time error on release x64 builds even you are not trigerring it (or perhaps I am mistakened)
+					std::cerr << Json_container_for_chapters_meta.dump()<<std::endl;
+					throw("Chapter_probing_exception (std::cerr output available) :api mismatch panick");
+nvm, I found out that after turning on /fsanitize=address code fails to compile, which I turned off after it.
+
+*Huge information considering auto and auto&& and auto keyword->
+https://stackoverflow.com/questions/29859796/c-auto-vs-auto
+auto and auto && cover most of the cases:
+Use auto when you need a local copy. This will never produce a reference. The copy (or move) constructor must exist, but it might not get called, due to the copy elision optimization.
+Use auto && when you don't care if the object is local or not. Technically, this will always produce a reference, but if the initializer is a temporary (e.g., the function returns by value), it will behave essentially like your own local object.
+Also, auto && doesn't guarantee that the object will be modifiable, either. Given a const object or reference, it will deduce const. However, modifiability is often assumed, given the specific context.
+auto & and auto const & are a little more specific:
+auto & guarantees that you are sharing the variable with something else. It is always a reference and never to a temporary.
+auto const & is like auto &&, but provides read-only access.
+What about for primitive/non-primitive types?
+There is no difference.
+Does this also apply to range based for loops?
+Yes. Applying the above principles,
+Use auto && for the ability to modify and discard values of the sequence within the loop. (That is, unless the container provides a read-only view, such as std::initializer_list, in which case it will be effectively an auto const &.)
+Use auto & to modify the values of the sequence in a meaningful way.
+Use auto const & for read-only access.
+Use auto to work with (modifiable) copies.
+You also mention auto const with no reference. This works, but it's not very commonly used because there is seldom an advantage to read-only access to something that you already own
+
+*If a function can be made to static, might as well amke it.
+
+*std::async is less a thread, or a routine, it's something going on and running->
+Although sometimes it feels like it's actually running on another thread for every call. I tested, and spawning threads for every tasks vs using std::async it is just takes longer when you are not splitting other wise the difference is similiar and I think it's also how you can spin around the executions in splitted chunks achieving latency over all better than the overhead of using a thread of everything, although it's hard to say again if each execution has super high latency, although you also have to throttle how many threads you can use for say like networking request usually taking it into considerations too.
+
+*&&->
+is for rvalue apparently in function parameter and in single variable and from std::move
+https://stackoverflow.com/questions/4549151/c-double-address-operator#39480244 /  is new in C++11, and it signifies that the function accepts an RValue-Reference -- that is, a reference to an argument that is about to be destroyed.
+
+*std::getline() is taking istream.
+[practice] :maybe a useful quote for the title of commit so like people learn something useful from commit
+
+[practice] :Sometimes you can only check for every conditions in orchestrator, as these considtions are usually local to components, and can be possible to proceed if they are not depended
+
+[practice] :One of the things you can do for steam in orchestrator is to assume it's nullptr in every function and level throughout the stuffs.
+
+*One thing about memory management is, like don't make the same progress again and again, it's like punching through a hole and once it's done you can go through it faster. What I am trying to say, I mean, is perhaps to explore presisdent than reconstraining data structures.
+
+[practice] :Maybe in the future do a Generic model like, include a function pool header inside these files that are included by omiko, and instead of using lambdas just dump the function in there and it's like becomes more focused about concepts in one hand and focusing implementations in another like a seperation.
+[practice] :In such way, implementations are naturally abstracted in your daily workflow, and that makes it easy to expand codes without having to copy paste and spawning a bunch of inlines which sometimes is dazzling to maintain for you are looking at a bunch things.
+
+*We can do things in a more extreme way, by putting all the variables in the global while neccesary and applicable, then use enums in array to access them and there would be virtually no need to call new and they are compact->
+although I can already like put variables in a scope and pass a pointer for things inside which eventually concludes when out of scope, and currently I am using a P0 P1 P2 model with the awareness of wah 's exactly happening and the latency and resource performance controls.
+
+*std::array and std::span discorvery->
+So I just found out about std::span, it can track size and type automatically, and basically I can use std::array when I know its size before the stuff that are going to fill it in, and if I can get my hands on stuff before, I can use span too.
+[practice] :one way to avoid program crashes ruining your data is to spend less time on those criticle paths where you are handling such datas.
+
+*Std features sometimes are fancy and have over head so don't use it, that's not true I think. Because the overhead is low enough and the usefulness is baked into the syntax.->
+Use them after initial evaluation of :it can make your codes easier. Please use these mordern c++ features without much fears.
+When you aren't getting performance, then you can consider fine tuning, that's a less generic field althoough you can do it too.
+
+*& and && for param->
+if variable was created specifically for the function, use &&, otherwise use a reference besides copying. specially like if the method is very generic, for man other components to use..?
+
+*Sanitizing stuffs ->
+it's a common thing that we usually do for handling data, in program.
+the thing is, if you don't do this, things can either doesnt work, or when components are working together something isn't supposed to work worked and other things relying on the information that it worked or it's valid ending up doesnt work

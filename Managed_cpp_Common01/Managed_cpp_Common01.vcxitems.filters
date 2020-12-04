@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Language_features">
+      <UniqueIdentifier>{a4291f82-b046-416e-8bb9-5b9fd1f23b47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{49640168-a6db-46bc-a470-091951490210}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cpp_std">
+      <UniqueIdentifier>{62ebda8f-c82d-4c93-af86-2c9fae0793d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Language_features\function_pools">
+      <UniqueIdentifier>{46dfa1df-c338-426a-bb02-e5de54dd9ce6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CSP.h">
+      <Filter>Language_features</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)mtx_resource.h">
+      <Filter>Language_features</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Omiko.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Macro_01.h">
+      <Filter>Language_features</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)json.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)functions_01.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Libcurl_custom.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Utility_Omiko.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)httplib.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)functions_02.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Development_flags.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)cpprestsdk.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CSP_02.h">
+      <Filter>Language_features</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CSP_03.h">
+      <Filter>Language_features</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Macro_n1.h">
+      <Filter>Language_features</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Cpp_std_KZA73Y3WWDOYc.h">
+      <Filter>cpp_std</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)cpp_20.h">
+      <Filter>cpp_std</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)cppcoro_library.h">
+      <Filter>cpp_std</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Language_Feature_Omiko.h">
+      <Filter>Language_features</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Instrinic.h">
+      <Filter>cpp_std</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Cpp_win_y5r0qRRyea3Lf.h">
+      <Filter>cpp_std</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)cpp_std_Omiko.h">
+      <Filter>cpp_std</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)generate_random_alphaSquence.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)templated_nest.h">
+      <Filter>Language_features</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="$(MSBuildThisFileDirectory)doc.txt" />
+  </ItemGroup>
+</Project>

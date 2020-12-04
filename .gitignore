@@ -1,32 +1,17 @@
-# Prerequisites
-*.d
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
+*.ipch
+*.log
+*.pdb
+*.tlog
+*.ilk
+*.recipe
+*.db
+Managed_cpp/.vs/Managed_cpp/v16/.suo
+.vs/Managed_cpp_Cosmos/v16/.suo
 *.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
+*.idb
+Managed_cpp/x64/Debug/Managed_cpp.vcxproj.FileListAbsolute.txt
+Managed_cpp/x64/Release/Managed_cpp.vcxproj.FileListAbsolute.txt
+Managed_cpp/Release/Managed_cpp.vcxproj.FileListAbsolute.txt
+Managed_cpp/Release/Managed_cpp.vcxproj.FileListAbsolute.txt
+Managed_cpp/Debug/Managed_cpp.vcxproj.FileListAbsolute.txt

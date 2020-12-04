@@ -1,0 +1,16 @@
+// Hint files help the Visual Studio IDE interpret Visual C++ identifiers
+// such as names of functions and macros.
+// For more information see https://go.microsoft.com/fwlink/?linkid=865984
+#define Core_Dev
+// Hint files help the Visual Studio IDE interpret Visual C++ identifiers
+// such as names of functions and macros.
+// For more information see https://go.microsoft.com/fwlink/?linkid=865984
+#define ct_start auto ERmUUBKcjfnt0awudh_begin = std::chrono::high_resolution_clock::now();
+// Hint files help the Visual Studio IDE interpret Visual C++ identifiers
+// such as names of functions and macros.
+// For more information see https://go.microsoft.com/fwlink/?linkid=865984
+#define ct_end auto ERmUUBKcjfnt0awudh_end = std::chrono::high_resolution_clock::now(); fcout((std::chrono::duration_cast<std::chrono::microseconds>(ERmUUBKcjfnt0awudh_begin-ERmUUBKcjfnt0awudh_end)).count());
+// Hint files help the Visual Studio IDE interpret Visual C++ identifiers
+// such as names of functions and macros.
+// For more information see https://go.microsoft.com/fwlink/?linkid=865984
+#define U(x) _XPLATSTR(x)

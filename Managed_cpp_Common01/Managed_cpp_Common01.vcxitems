@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <ItemsProjectGuid>{5afbd473-b551-45a5-a3d6-89c82d387a4c}</ItemsProjectGuid>
+    <ItemsRootNamespace>
+    </ItemsRootNamespace>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectCapability Include="SourceItemsFromImports" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)cppcoro_library.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)cpprestsdk.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)cpp_20.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Cpp_std_KZA73Y3WWDOYc.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)cpp_std_Omiko.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Cpp_win_y5r0qRRyea3Lf.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)CSP.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)CSP_02.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)CSP_03.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Development_flags.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)functions_01.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)functions_02.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)generate_random_alphaSquence.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)httplib.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Instrinic.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)json.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Libcurl_custom.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Macro_01.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Macro_n1.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)mtx_resource.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Language_Feature_Omiko.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Omiko.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Utility_Omiko.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)templated_nest.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="$(MSBuildThisFileDirectory)doc.txt" />
+  </ItemGroup>
+</Project>

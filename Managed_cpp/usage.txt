@@ -1,0 +1,9 @@
+When Compiling, use emcc --bind -O3 -o out.js -std=c++20 -pthread -s PTHREAD_POOL_SIZE=6 Core.cpp
+https://emscripten.org/docs/porting/pthreads.html
+the PTHREAD_POOL_SIZE reflects the number of "threads" created (in fact workers) in the virtual machine running webassembly, which is indeed using multiple threads, and the number also reflects in General_core Macros.h, it doesn't have to match, although better if you have it so it's like a "reserved" thing
+When running with Nodejs, use these flags :--experimental-wasm-threads --experimental-wasm-bulk-memory
+from error message when running with Nodejs :requested a shared WebAssembly.Memory but the returned buffer is not a SharedArrayBuffer, indicating that while the browser has SharedArrayBuffer it does not have WebAssembly threads support - you may need to set a flag
+(on node you may need: --experimental-wasm-threads --experimental-wasm-bulk-memory and also use a recent version)
+
+emcc --bind -O3 -o out.js -std=c++20 -pthread -s PTHREAD_POOL_SIZE=6 Core.cpp && Node --experimental-wasm-threads --experimental-wasm-bulk-memory out.js
+During development, I wanna use visual studio for editing and managing, while the editor does provide some indeed powerful feature like project references I usually would like to use stuff like relative path in my codes for includes and stuff so the codes works with and without visual studio
