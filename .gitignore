@@ -7,6 +7,8 @@
 *.recipe
 *.db
 Managed_cpp/.vs/Managed_cpp/v16/.suo
+Managed_cpp/Dynasty_
+Managed_cpp/Update
 .vs/Managed_cpp_Cosmos/v16/.suo
 *.obj
 *.idb

@@ -94,8 +94,10 @@
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <AssemblerOutput>NoListing</AssemblerOutput>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <AdditionalOptions>/await /MD /EHsc %(AdditionalOptions)</AdditionalOptions>
+      <EnableModules>true</EnableModules>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -112,8 +114,10 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <Optimization>Full</Optimization>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <AdditionalOptions>/await /MD /EHsc %(AdditionalOptions)</AdditionalOptions>
+      <EnableModules>true</EnableModules>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -130,9 +134,10 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
-      <AssemblerOutput>NoListing</AssemblerOutput>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <AdditionalOptions>/await /MD /EHsc %(AdditionalOptions)</AdditionalOptions>
+      <EnableModules>true</EnableModules>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -150,10 +155,10 @@
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <Optimization>Full</Optimization>
       <OmitFramePointers>true</OmitFramePointers>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <AssemblerOutput>NoListing</AssemblerOutput>
-      <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <AdditionalOptions>/await %(AdditionalOptions)</AdditionalOptions>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

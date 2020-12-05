@@ -8,6 +8,59 @@ namespace Common_functions
 
 		///This the place you are stacking useful functions
 		
+		//https://tools.ietf.org/html/rfc3986#section-2.2
+		//https://github.com/microsoft/cpprestsdk/issues/1542
+		//https://wiki.hostbridge.com/display/DOC/URL+Encoding+Unsafe+and+Reserved+Characters
+		//https://stackoverflow.com/questions/154536/encode-decode-urls-in-c
+		//suggesting to write your own sanitize_url everytime for every project's target, so it's ensure to work on that system even though the method may not be generalized enough and applicable to other projects too, success lasts.
+		std::string sanitize_url(const std::string& value) {
+			std::ostringstream escaped;
+			escaped.fill('0');
+			escaped << std::hex;
+
+			for (std::string::const_iterator i = value.begin(), n = value.end(); i != n; ++i) {
+				std::string::value_type c = (*i);
+
+				// Keep alphanumeric and other accepted characters intact
+				if (isalnum(c) || c == '-' || c == '_' || c == '.' || c == '~'//according to rfc
+					||c==':'||c=='/'||c=='#'||c=='?'||c=='@'//according to me
+					) {
+					escaped << c;
+					continue;
+				}
+
+				// Any other characters are percent-encoded
+				escaped << std::uppercase;
+				escaped << '%' << std::setw(2) << int((unsigned char)c);
+				escaped <<std::nouppercase;
+			}
+
+			return escaped.str();
+		}
+		std::wstring sanitize_url(const std::wstring& value) {
+			std::wostringstream escaped;
+			escaped.fill('0');
+			escaped << std::hex;
+
+			for (std::wstring::const_iterator i = value.begin(), n = value.end(); i != n; ++i) {
+				std::wstring::value_type c = (*i);
+
+				// Keep alphanumeric and other accepted characters intact
+				if (isalnum(c) || c == '-' || c == '_' || c == '.' || c == '~'//according to rfc
+					|| c == ':' || c == '/' || c == '#' || c == '?' || c == '@'//according to me
+					) {
+					escaped << c;
+					continue;
+				}
+
+				// Any other characters are percent-encoded
+				escaped << std::uppercase;
+				escaped << '%' << std::setw(2) << int((unsigned char)c);
+				escaped << std::nouppercase;
+			}
+
+			return escaped.str();
+		}
 		void pop_optional_at_end_str(std::string& input, char& proper)
 		{
 			if (input.back() == proper)
@@ -24,6 +77,15 @@ namespace Common_functions
 		}
 		/// optional_path_way_after_ensured_sucess
 		/// used for calling codes that might throw that aren't your design
+		std::optional<const char*> opwaes(std::function<void()>&& func)
+		{
+			try
+			{
+				func();
+				return std::nullopt;
+			}
+			catch (std::exception e) { return (e.what()); }
+		}
 		std::optional<const char*> opwaes(std::function<void()> func)
 		{
 			try
@@ -33,17 +95,23 @@ namespace Common_functions
 			}
 			catch (std::exception e) { return (e.what()); }
 		}
-		bool Create_folder(std::ostringstream paths)
+		std::optional<bool> Create_folder(std::ostringstream paths)
 		{
-			return std::filesystem::create_directories(paths.str());
+			if (!std::filesystem::exists(paths.str()))//otherwise will erase content in existing directory
+				return std::filesystem::create_directories(paths.str());
+			return std::nullopt;
 		}
-		bool Create_folder(std::string paths)
+		std::optional<bool> Create_folder(std::string paths)
 		{
-			return std::filesystem::create_directories(paths);
+			if (!std::filesystem::exists(paths))//otherwise will erase content in existing directory
+				return std::filesystem::create_directories(paths);
+			return std::nullopt;
 		}
-		bool Create_folder(std::wstring paths)
+		std::optional<bool> Create_folder(std::wstring paths)
 		{
-			return std::filesystem::create_directories(paths);
+			if(!std::filesystem::exists(paths))//otherwise will erase content in existing directory
+				return std::filesystem::create_directories(paths);
+			return std::nullopt;
 		}
 		static void Imagine_str_lp(std::string* input_A, std::wstring* input_B, /*std::function<void(std::any, std::any, bool*) > function_*//*Let's use normal function pointer for now and if needed use std::function*/void(*function_)(std::any,std::any,bool*), std::any output)
 		{

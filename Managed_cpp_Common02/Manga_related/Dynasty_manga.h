@@ -109,7 +109,7 @@ namespace Models
 			static void probe_chapters(std::string Series_name, std::string perma_link, meta_* steam = nullptr)
 			{
 #ifndef disable_switch_for_debugging_purpose
-				fcout("Probe_chapters");
+				fcout("\n\n********************\nProbe_chapters"<<std::endl);
 				//fcout(chapters_url);
 				//fcout("probe_chapters running on thread :"<<std::this_thread::get_id());
 
@@ -121,7 +121,7 @@ namespace Models
 				utility::string_t network_response; nlohmann::json Json_container_for_chapters_meta;
 				try
 				{
-					network_response = Common_functions::Common01::HttpGetString(string_builder.str());  Json_container_for_chapters_meta = nlohmann::json::parse(network_response);
+					network_response = Common_functions::Common01::HttpGetString(string_builder.str()); Json_container_for_chapters_meta = nlohmann::json::parse(network_response);
 				}
 				catch(std::exception e)
 				{
@@ -157,16 +157,17 @@ namespace Models
 										//fwcout("C :" << utility::conversions::utf8_to_utf16(output_filename.str()));
 										try
 										{
-											fcout("Fetch :" << output_filename.str());
+											fcout("output target :" << output_filename.str());
 											fcout("At :" << dynasty_system_paths);
+											fcout('\n');
 											auto res = Common_functions::Common01::HttpGetStreambuf_toFile(Koshiki_url_utf16, utility::conversions::utf8_to_utf16(dynasty_system_paths), utility::conversions::utf8_to_utf16(output_filename.str()));
 											//it would throw when directory doesnt exist, it can create file though. see Concurrency::streams::fstream::open_ostream
 											if (res.has_value())
 											{
 												if (res.value() == 101)
 												{
-													std::cerr << "Detected internal error :url format is invalid therefore connection wasn't make and throwing an exception :let's hope something catches it" << std::endl;
-													throw;
+													std::wcerr << "Detected interal error :request failed because invalid url at :"<<Koshiki_url_utf16<< utility::conversions::utf8_to_utf16(dynasty_system_paths) << std::endl;
+													abort();
 												}
 											}
 										}//try blocks for normal route so it doesn't use it usually, if you have to check for errors, use if statement at the top of control apths.

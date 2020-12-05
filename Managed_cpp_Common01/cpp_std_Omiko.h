@@ -1,6 +1,9 @@
 #pragma once
-#ifndef _Precompiling_Cpp_std_KZA73Y3WWDOYc_
+
 #include "Cpp_std_KZA73Y3WWDOYc.h"
+
+#if 0
+#include "Cpp_std_modules.h"//using modules for c++ std libraries instead
 #endif
 
 #include "cpp_20.h"

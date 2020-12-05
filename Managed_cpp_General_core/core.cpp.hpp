@@ -30,4 +30,10 @@ int main(int argc, char*argv[])
 {
 	///There's code execution in the global which will clean up after main() ends
 	//React();
+	{
+		if (argc>1)
+		{
+			P1::behavior[0] = true;
+		}
+	}
 }

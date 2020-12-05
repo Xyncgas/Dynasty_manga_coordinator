@@ -80,6 +80,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)generate_random_alphaSquence.h">
       <Filter>Utility</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Cpp_std_modules.h">
+      <Filter>cpp_std</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)templated_nest.h">

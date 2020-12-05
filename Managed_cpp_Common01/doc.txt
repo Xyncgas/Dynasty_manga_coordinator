@@ -111,3 +111,16 @@ if variable was created specifically for the function, use &&, otherwise use a r
 *Sanitizing stuffs ->
 it's a common thing that we usually do for handling data, in program.
 the thing is, if you don't do this, things can either doesnt work, or when components are working together something isn't supposed to work worked and other things relying on the information that it worked or it's valid ending up doesnt work
+
+*Regarding url encoding->
+		//https://tools.ietf.org/html/rfc3986#section-2.2
+		//https://github.com/microsoft/cpprestsdk/issues/1542
+		//https://wiki.hostbridge.com/display/DOC/URL+Encoding+Unsafe+and+Reserved+Characters
+		//https://stackoverflow.com/questions/154536/encode-decode-urls-in-c
+		//suggesting to write your own sanitize_url everytime for every project's target, so it's ensure to work on that system even though the method may not be generalized enough and applicable to other projects too, success lasts.
+
+*Generic pattern vs non generic ones->
+They can be both genius, someitmes you can do things in a generic way and sometimes you can't (like imagine supporting spread and nests pattern but still wanna have deconstructors customization --would cause overheads as trade off so I don't wanna because spread deconstruct them once for no reason upon program initialization.), and it's better to stick with the most generic one and stop trying to make it more generic and go into specified style when needed to while feeling right about it.
+
+*std::filesystem::CreateDirectory()->
+it seems like the function will make parent directory as well if you are giving it a string.

@@ -20,6 +20,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)cpprestsdk.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)cpp_20.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Cpp_std_KZA73Y3WWDOYc.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Cpp_std_modules.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)cpp_std_Omiko.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Cpp_win_y5r0qRRyea3Lf.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CSP.h" />
